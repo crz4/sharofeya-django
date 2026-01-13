@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Подключаем CSS через тег static -->
+    <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+    <title>ШароФея</title>
+</head>
+
+<body>
+    <main>
+        <h1>ШароФея - магазин по оформлению праздников, свадеб, выписок</h1>
+
+        <!-- Navbar -->
+        <div class="navbar">
+            <h2>ШароФея</h2>
+            <ul>
+                <li><a href="{% url 'index' %}" data-filter="all">Главная</a></li>
+                <li><a href="{% url 'catalog' %}" data-filter="catalog">Каталог</a></li>
+                <li><a href="{% url 'about' %}" data-filter="about">О нас</a></li>
+                <li><a href="{% url 'contacts' %}" data-filter="contacts">Контакты</a></li>
+                <li><a href="{% url 'reviews' %}" data-filter="reviews">Отзывы</a></li>
+                <li><a href="{% url 'cart' %}" data-filter="cart">Корзина</a></li>
+            </ul>
+        </div>
+
+        <!-- Поиск -->
+        <div class="search1">
+            <form action="/search" method="get">
+                <input type="search" name="q" placeholder="Искать товары...">
+                <button type="submit">Найти</button>
+            </form>
+        </div>
+
+        <!-- Галерея -->
+        <button class="show-all" data-filter="all">Показать все</button>
+        <section class="gallery">
+            <h2 class="section-title">Наши оформления</h2>
+
+            <div class="gallery-grid">
+                <a href="girls.html" class="gallery-item" data-category="girls">
+                    <img src="{% static 'main/images/gallery/balloon-01.jpg' %}" alt="Девочкам">
+                    <span class="overlay-text">Для девочек</span>
+                </a>
+
+                <a href="boys.html" class="gallery-item" data-category="boys">
+                    <img src="{% static 'main/images/gallery/balloon-02.jpg' %}" alt="Мальчикам">
+                    <span class="overlay-text">Для мальчиков</span>
+                </a>
+
+                <a href="adults.html" class="gallery-item" data-category="adults">
+                    <img src="{% static 'main/images/gallery/balloon-03.jpg' %}" alt="Для взрослых">
+                    <span class="overlay-text">Для взрослых</span>
+                </a>
+
+                <a href="extract.html" class="gallery-item" data-category="extract">
+                    <img src="{% static 'main/images/gallery/balloon-03.jpg' %}" alt="Выписка">
+                    <span class="overlay-text">Выписка</span>
+                </a>
+
+                <a href="balloons.html" class="gallery-item" data-category="balloons">
+                    <img src="{% static 'main/images/gallery/balloon-01.jpg' %}" alt="Просто шары">
+                    <span class="overlay-text">Просто шары</span>
+                </a>
+
+                <a href="photobooth.html" class="gallery-item" data-category="photobooth">
+                    <img src="{% static 'main/images/gallery/balloon-04.jpg' %}" alt="Фотозоны">
+                    <span class="overlay-text">Фотозоны</span>
+                </a>
+
+                <a href="other.html" class="gallery-item" data-category="other">
+                    <img src="{% static 'main/images/gallery/balloon-04.jpg' %}" alt="Прочее">
+                    <span class="overlay-text">Прочее</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Модальное окно для отзывов -->
+        <div id="review-modal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-img" id="review-modal-img">
+            <p class="modal-text" id="review-modal-text"></p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="start">
+            <address>
+                <p>Email: <a href="mailto:info@example.com">i@innasher.ru</a></p>
+                <p>Телефон: <a href="tel:+79001234567">+7-925-518-1722</a></p>
+            </address>
+            <address class="start1">
+                <a href="https://t.me/feia_mi" target="_blank">
+                    <img width="50" height="50" src="https://img.icons8.com/ios/50/telegram.png" alt="Telegram" />
+                </a>
+                <a href="https://www.instagram.com/feia_mi" target="_blank">
+                    <img width="50" height="50" src="https://img.icons8.com/ios/50/instagram-new--v1.png" alt="Instagram" />
+                </a>
+                <a href="https://vk.ru/feia_mi" target="_blank">
+                    <img width="50" height="50" src="https://img.icons8.com/ios/50/vk-com.png" alt="VK" />
+                </a>
+            </address>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="{% static 'main/js/index.js' %}"></script>
+</body>
+</html>
