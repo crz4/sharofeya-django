@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Подключаем CSS через тег static -->
+{% block css %}{% endblock css %}
+    <title>ШароФея</title>
+</head>
+
+<body>
+    <main>
+        <h1>ШароФея - магазин по оформлению праздников, свадеб, выписок</h1>
+
+        <!-- Navbar -->
+        <div class="navbar">
+            <h2>ШароФея</h2>
+            <ul>
+                <li><a href="{% url 'index' %}" data-filter="all">Главная</a></li>
+                <li><a href="{% url 'catalog' %}" data-filter="catalog">Каталог</a></li>
+                <li><a href="{% url 'about' %}" data-filter="about">О нас</a></li>
+                <li><a href="{% url 'contacts' %}" data-filter="contacts">Контакты</a></li>
+                <li><a href="{% url 'reviews' %}" data-filter="reviews">Отзывы</a></li>
+                <li><a href="{% url 'cart' %}" data-filter="cart">Корзина</a></li>
+            </ul>
+        </div>
+
+        <!-- Поиск -->
+        <div class="search1">
+            <form action="/search" method="get">
+                <input type="search" name="q" placeholder="Искать товары...">
+                <button type="submit">Найти</button>
+            </form>
+        </div>
+
+{% block content %}{% endblock %}
+
+        <!-- Модальное окно для отзывов -->
+        <div id="review-modal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-img" id="review-modal-img">
+            <p class="modal-text" id="review-modal-text"></p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+{% block footer %}{% endblock %}
+
+    <!-- JS -->
+    <script src="{% static 'main/js/index.js' %}"></script>
+</body>
+</html>

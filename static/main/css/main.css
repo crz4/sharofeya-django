@@ -1,0 +1,165 @@
+/* ===== ОБЩИЕ СТИЛИ ===== */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html,
+body {
+  min-height: 100vh;
+  background-color: #e4c9b6;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* ===== НАВБАР ===== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  padding: 0 40px;
+}
+
+.navbar h2 {
+  color: #dea69b;
+  font-weight: 600;
+}
+
+.navbar ul {
+  display: flex;
+}
+
+.navbar ul li {
+  list-style: none;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: rgb(255, 243, 243);
+  font-size: 15px;
+  margin-right: 20px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.navbar ul li a:hover {
+  background-color: #dea69b;
+}
+
+/* ===== КОНТЕЙНЕР ТОВАРОВ ===== */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  padding: 40px 50px 60px;
+}
+
+/* ===== КАРТОЧКА ТОВАРА ===== */
+.product-card {
+  background-color: #f3e1d3; /* мягкий беж */
+  border: 1px solid #d2b6a2;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== ИЗОБРАЖЕНИЕ ===== */
+.product-image {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+/* ===== ИНФО ===== */
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1c1c1c;
+}
+
+.product-price {
+  font-size: 16px;
+  font-weight: 500;
+  color: #c94c4c;
+}
+
+/* ===== СОСТАВ ===== */
+.product-composition h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 8px 0 4px;
+}
+
+.product-composition ul {
+  padding-left: 18px;
+  font-size: 14px;
+  color: #444;
+}
+
+/* ===== КНОПКА ===== */
+.product-btn {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: #fff;
+}
+
+/* ===== ЦВЕТА КАТЕГОРИЙ ===== */
+.product-card--boys .product-btn {
+  background-color: #c94c4c;
+}
+
+.product-card--girls .product-btn {
+  background-color: #e38cb7;
+}
+
+.product-card--photobooth .product-btn {
+  background-color: #7b4fa3;
+}
+
+.product-btn:hover {
+  opacity: 0.85;
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .products {
+    padding: 20px;
+  }
+}
+

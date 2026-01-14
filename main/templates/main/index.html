@@ -1,12 +1,10 @@
+{% extends "main/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Подключаем CSS через тег static -->
+{% block css %}
     <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+{% endblock  %}
+
     <title>ШароФея</title>
 </head>
 
@@ -36,6 +34,7 @@
         </div>
 
         <!-- Галерея -->
+{% block content %}
         <button class="show-all" data-filter="all">Показать все</button>
         <section class="gallery">
             <h2 class="section-title">Наши оформления</h2>
@@ -77,6 +76,7 @@
                 </a>
             </div>
         </section>
+{% endblock content %}
 
         <!-- Модальное окно для отзывов -->
         <div id="review-modal" class="modal">
@@ -87,6 +87,7 @@
     </main>
 
     <!-- Footer -->
+{% block footer %}
     <footer>
         <div class="start">
             <address>
@@ -106,6 +107,9 @@
             </address>
         </div>
     </footer>
+{% endblock footer %}
+
+
 
     <!-- JS -->
     <script src="{% static 'main/js/index.js' %}"></script>
