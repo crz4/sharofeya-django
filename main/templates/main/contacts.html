@@ -1,0 +1,73 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'main/css/contacts.css' %}">
+{% endblock  %}
+
+    <title>ШароФея</title>
+</head>
+
+<body>
+    <main>
+
+        <!-- Navbar -->
+        <div class="navbar">
+            <h2>ШароФея</h2>
+            <ul>
+                <li><a href="{% url 'index' %}" data-filter="all">Главная</a></li>
+                <li><a href="{% url 'catalog' %}" data-filter="catalog">Каталог</a></li>
+                <li><a href="{% url 'contacts' %}" data-filter="contacts">Контакты</a></li>
+                <li><a href="{% url 'reviews' %}" data-filter="reviews">Отзывы</a></li>
+                <li><a href="{% url 'cart' %}" data-filter="cart">Корзина</a></li>
+            </ul>
+        </div>
+
+{% block content %}
+        
+    <div class="main-section">
+        <div class="wrapper">
+            <div class="contact-card">
+                <h2>Наши контакты</h2>
+                <p>Телефон: <a href="tel:+79001234567" class="telefon">+7-925-518-1722</a></p>
+                <a href="mailto:i@innasher.ru?subject=Здравствуйте" class="email-link">i@innasher.ru</a>
+                <p>Адрес: г. Москва, ул. Пушкина, д. 10</p>
+                <button type="submit">Отправить</button>
+            </div>
+        </div>
+
+        <section class="contact-form">
+            <h2>Свяжитесь с нами</h2>
+            <form action="#" method="post">
+                <label for="name">Ваше имя:</label>
+                <input type="text" id="name" name="name" placeholder="Введите имя" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Введите email" required>
+
+                <label for="message">Сообщение:</label>
+                <textarea id="message" name="message" rows="5" placeholder="Ваше сообщение..." required></textarea>
+
+                <button type="submit1">Отправить</button>
+            </form>
+        </section>
+    </div>
+{% endblock content %}
+
+        <!-- Модальное окно для отзывов -->
+        <div id="review-modal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-img" id="review-modal-img">
+            <p class="modal-text" id="review-modal-text"></p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+
+    <!-- JS -->
+    <script src="{% static 'main/js/index.js' %}"></script>
+</body>
+</html>
+
+
+

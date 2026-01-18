@@ -1,0 +1,166 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppis', sans-serif;
+}
+
+html,
+body {
+  min-height: 100vh;
+  background-color: #e4c9b6;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  padding: 0 40px;
+}
+
+.navbar h2 {
+  color: #dea69b;
+  font-weight: 600;
+}
+
+.navbar ul {
+  display: flex;
+}
+
+.navbar ul li {
+  list-style: none;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: rgb(255, 245, 245);
+  font-size: 15px;
+  margin-right: 20px;
+}
+
+.navbar ul li a:hover {
+  background-color: #dea69b;
+}
+
+/* MAIN SECTION */
+.main-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 100px;
+  padding: 40px;
+}
+
+/* CONTACTS CARD */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 30%;
+  padding: 20px;              /* ⬅️ ключевое */
+  gap: 15px;
+
+  border: 2px solid #dea69b;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Заголовок СТРОГО ВВЕРХУ */
+.wrapper h2 {
+  margin: 0;
+}
+
+/* Текст контактов — чтобы не наляписто */
+.wrapper p {
+  line-height: 1.6;
+  margin: 4px 0;
+}
+
+/* Кнопка внизу карточки */
+.wrapper button {
+  margin-top: auto;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #dea69b;
+  cursor: pointer;
+}
+
+.wrapper button:hover {
+  background-color: #ff8d76;
+}
+
+/* FORM */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+
+  width: 30%;
+  padding: 20px;
+  gap: 15px;
+
+  border: 2px solid #dea69b;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.contact-form h2 {
+  margin: 0;
+  text-align: center;
+}
+
+.contact-form label {
+  font-weight: 600;
+  color: #555;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #dea69b;
+}
+
+.contact-form button {
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #dea69b;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #ff8d76;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .main-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wrapper,
+  .contact-form {
+    width: 90%;
+  }
+}
+
+.email-link{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    margin-right: 20px;
+}
+.telefon{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    margin-right: 20px;
+}
