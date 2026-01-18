@@ -6,8 +6,6 @@ def index(request):
 def catalog(request):
     return render(request, 'main/catalog.html')
 
-def about(request):
-    return render(request, 'main/about.html')
 
 def contacts(request):
     return render(request, 'main/contacts.html')
