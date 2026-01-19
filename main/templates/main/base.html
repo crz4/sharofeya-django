@@ -5,14 +5,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Подключаем CSS через тег static -->
-{% block css %}{% endblock css %}
+
+    <!-- Подключаем общий CSS через static -->
+    <link rel="stylesheet" href="{% static 'main/css/base.css' %}">
+
+    <!-- Google Fonts для navbar -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&amp;display=swap" rel="stylesheet">
+
+    <!-- Блок для CSS и шрифтов конкретной страницы -->
+    {% block css %}{% endblock css %}
+
     <title>ШароФея</title>
 </head>
 
 <body>
     <main>
-
 
         <!-- Navbar -->
         <div class="navbar">
@@ -26,8 +35,7 @@
             </ul>
         </div>
 
-
-{% block content %}{% endblock %}
+        {% block content %}{% endblock %}
 
         <!-- Модальное окно для отзывов -->
         <div id="review-modal" class="modal">
@@ -38,7 +46,7 @@
     </main>
 
     <!-- Footer -->
-{% block footer %}{% endblock %}
+    {% block footer %}{% endblock %}
 
     <!-- JS -->
     <script src="{% static 'main/js/index.js' %}"></script>
