@@ -27,11 +27,12 @@
         <div class="navbar">
             <h2>ШароФея</h2>
             <ul>
-                <li><a href="{% url 'index' %}" data-filter="all">Главная</a></li>
-                <li><a href="{% url 'catalog' %}" data-filter="catalog">Каталог</a></li>
-                <li><a href="{% url 'contacts' %}" data-filter="contacts">Контакты</a></li>
-                <li><a href="{% url 'reviews' %}" data-filter="reviews">Отзывы</a></li>
-                <li><a href="{% url 'cart' %}" data-filter="cart">Корзина</a></li>
+                <li><a href="{% url 'main:index' %}" data-filter="all">Главная</a></li>
+                <li><a href="{% url 'goods:catalog' %}" data-filter="catalog">Каталог</a></li>
+                <li><a href="{% url 'main:contacts' %}" data-filter="contacts">Контакты</a></li>
+                <li><a href="{% url 'main:reviews' %}" data-filter="reviews">Отзывы</a></li>
+                <li><a href="{% url 'main:cart' %}" data-filter="cart">Корзина</a></li>
+
             </ul>
         </div>
 

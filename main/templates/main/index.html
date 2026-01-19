@@ -2,121 +2,118 @@
 {% load static %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'main/css/index.css' %}">
 
 <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&amp;family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gravitas+One&amp;family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap" rel="stylesheet">
 {% endblock css %}
 
-
-    <title>ШароФея</title>
+<title>ШароФея</title>
 </head>
 
 <body>
-    <main>
-        <h1>ШароФея - магазин по оформлению праздников, свадеб, выписок</h1>
+<main>
+    <h1>ШароФея - магазин по оформлению праздников, свадеб, выписок</h1>
 
-        <!-- Navbar -->
-        <div class="navbar">
-            <h2>ШароФея</h2>
-            <ul>
-                <li><a href="{% url 'index' %}" data-filter="all">Главная</a></li>
-                <li><a href="{% url 'catalog' %}" data-filter="catalog">Каталог</a></li>
-                <li><a href="{% url 'contacts' %}" data-filter="contacts">Контакты</a></li>
-                <li><a href="{% url 'reviews' %}" data-filter="reviews">Отзывы</a></li>
-                <li><a href="{% url 'cart' %}" data-filter="cart">Корзина</a></li>
-            </ul>
-        </div>
+    <!-- Navbar -->
+    <div class="navbar">
+        <h2>ШароФея</h2>
+        <ul>
+            <li><a href="{% url 'main:index' %}" data-filter="all">Главная</a></li>
+            <li><a href="{% url 'goods:catalog' %}" data-filter="catalog">Каталог</a></li>
+            <li><a href="{% url 'main:contacts' %}" data-filter="contacts">Контакты</a></li>
+            <li><a href="{% url 'main:reviews' %}" data-filter="reviews">Отзывы</a></li>
+            <li><a href="{% url 'main:cart' %}" data-filter="cart">Корзина</a></li>
+        </ul>
+    </div>
 
-        <!-- Поиск -->
-        <div class="search1">
-            <form action="/search" method="get">
-                <input type="search" name="q" placeholder="Искать товары...">
-                <button type="submit">Найти</button>
-            </form>
-        </div>
+    <!-- Поиск -->
+    <div class="search1">
+        <form action="/search" method="get">
+            <input type="search" name="q" placeholder="Искать товары...">
+            <button type="submit">Найти</button>
+        </form>
+    </div>
 
-        <!-- Галерея -->
+    <!-- Галерея -->
 {% block content %}
-        <button class="show-all" data-filter="all">Показать все</button>
-        <section class="gallery">
-            <h2 class="section-title">Наши оформления</h2>
+    <button class="show-all" data-filter="all">Показать все</button>
+    <section class="gallery">
+        <h2 class="section-title">Наши оформления</h2>
 
-            <div class="gallery-grid">
-                <a href="girls.html" class="gallery-item" data-category="girls">
-                    <img src="{% static 'main/images/gallery/balloon-01.jpg' %}" alt="Девочкам">
-                    <span class="overlay-text">Для девочек</span>
-                </a>
+        <div class="gallery-grid">
+            <a href="{% url 'goods:girls' %}" class="gallery-item" data-category="girls">
+                <img src="{% static 'main/images/gallery/balloon-01.jpg' %}" alt="Девочкам">
+                <span class="overlay-text">Для девочек</span>
+            </a>
 
-                <a href="boys.html" class="gallery-item" data-category="boys">
-                    <img src="{% static 'main/images/gallery/balloon-02.jpg' %}" alt="Мальчикам">
-                    <span class="overlay-text">Для мальчиков</span>
-                </a>
+            <a href="{% url 'goods:boys' %}" class="gallery-item" data-category="boys">
+                <img src="{% static 'main/images/gallery/balloon-02.jpg' %}" alt="Мальчикам">
+                <span class="overlay-text">Для мальчиков</span>
+            </a>
 
-                <a href="adults.html" class="gallery-item" data-category="adults">
-                    <img src="{% static 'main/images/gallery/balloon-03.jpg' %}" alt="Для взрослых">
-                    <span class="overlay-text">Для взрослых</span>
-                </a>
+            <a href="{% url 'goods:adults' %}" class="gallery-item" data-category="adults">
+                <img src="{% static 'main/images/gallery/balloon-03.jpg' %}" alt="Для взрослых">
+                <span class="overlay-text">Для взрослых</span>
+            </a>
 
-                <a href="extract.html" class="gallery-item" data-category="extract">
-                    <img src="{% static 'main/images/gallery/balloon-03.jpg' %}" alt="Выписка">
-                    <span class="overlay-text">Выписка</span>
-                </a>
+            <a href="{% url 'goods:extract' %}" class="gallery-item" data-category="extract">
+                <img src="{% static 'main/images/gallery/balloon-03.jpg' %}" alt="Выписка">
+                <span class="overlay-text">Выписка</span>
+            </a>
 
-                <a href="balloons.html" class="gallery-item" data-category="balloons">
-                    <img src="{% static 'main/images/gallery/balloon-01.jpg' %}" alt="Просто шары">
-                    <span class="overlay-text">Просто шары</span>
-                </a>
+            <a href="{% url 'goods:balloons' %}" class="gallery-item" data-category="balloons">
+                <img src="{% static 'main/images/gallery/balloon-01.jpg' %}" alt="Просто шары">
+                <span class="overlay-text">Просто шары</span>
+            </a>
 
-                <a href="photobooth.html" class="gallery-item" data-category="photobooth">
-                    <img src="{% static 'main/images/gallery/balloon-04.jpg' %}" alt="Фотозоны">
-                    <span class="overlay-text">Фотозоны</span>
-                </a>
+            <a href="{% url 'goods:photobooth' %}" class="gallery-item" data-category="photobooth">
+                <img src="{% static 'main/images/gallery/balloon-04.jpg' %}" alt="Фотозоны">
+                <span class="overlay-text">Фотозоны</span>
+            </a>
 
-                <a href="other.html" class="gallery-item" data-category="other">
-                    <img src="{% static 'main/images/gallery/balloon-04.jpg' %}" alt="Прочее">
-                    <span class="overlay-text">Прочее</span>
-                </a>
-            </div>
-        </section>
+            <a href="{% url 'goods:other' %}" class="gallery-item" data-category="other">
+                <img src="{% static 'main/images/gallery/balloon-04.jpg' %}" alt="Прочее">
+                <span class="overlay-text">Прочее</span>
+            </a>
+        </div>
+    </section>
 {% endblock content %}
 
-        <!-- Модальное окно для отзывов -->
-        <div id="review-modal" class="modal">
-            <span class="close">&times;</span>
-            <img class="modal-img" id="review-modal-img">
-            <p class="modal-text" id="review-modal-text"></p>
-        </div>
-    </main>
+    <!-- Модальное окно для отзывов -->
+    <div id="review-modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-img" id="review-modal-img">
+        <p class="modal-text" id="review-modal-text"></p>
+    </div>
+</main>
 
-    <!-- Footer -->
+<!-- Footer -->
 {% block footer %}
-    <footer>
-        <div class="start">
-            <address>
-                <p><a href="mailto:i@innasher.ru?subject=Здравствуйте" class="email-link">i@innasher.ru</a></p>
-                <p>Телефон: <a href="tel:+79001234567">+7-925-518-1722</a></p>
-            </address>
-            <address class="start1">
-                <a href="https://t.me/feia_mi" target="_blank">
-                    <img width="50" height="50" src="https://img.icons8.com/ios/50/telegram.png" alt="Telegram" />
-                </a>
-                <a href="https://www.instagram.com/feia_mi" target="_blank">
-                    <img width="50" height="50" src="https://img.icons8.com/ios/50/instagram-new--v1.png" alt="Instagram" />
-                </a>
-                <a href="https://vk.ru/feia_mi" target="_blank">
-                    <img width="50" height="50" src="https://img.icons8.com/ios/50/vk-com.png" alt="VK" />
-                </a>
-            </address>
-        </div>
-    </footer>
+<footer>
+    <div class="start">
+        <address>
+            <p><a href="mailto:i@innasher.ru?subject=Здравствуйте" class="email-link">i@innasher.ru</a></p>
+            <p>Телефон: <a href="tel:+79001234567">+7-925-518-1722</a></p>
+        </address>
+        <address class="start1">
+            <a href="https://t.me/feia_mi" target="_blank">
+                <img width="50" height="50" src="https://img.icons8.com/ios/50/telegram.png" alt="Telegram" />
+            </a>
+            <a href="https://www.instagram.com/feia_mi" target="_blank">
+                <img width="50" height="50" src="https://img.icons8.com/ios/50/instagram-new--v1.png" alt="Instagram" />
+            </a>
+            <a href="https://vk.ru/feia_mi" target="_blank">
+                <img width="50" height="50" src="https://img.icons8.com/ios/50/vk-com.png" alt="VK" />
+            </a>
+        </address>
+    </div>
+</footer>
 {% endblock footer %}
 
-
-
-    <!-- JS -->
-    <script src="{% static 'main/js/index.js' %}"></script>
+<!-- JS -->
+<script src="{% static 'main/js/index.js' %}"></script>
 </body>
 </html>
