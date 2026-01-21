@@ -15,7 +15,6 @@
 
 <body>
 <main>
-    <h1>ШароФея - магазин по оформлению праздников, свадеб, выписок</h1>
 
     <!-- Navbar -->
     <div class="navbar">
@@ -38,49 +37,50 @@
     </div>
 
     <!-- Галерея -->
-{% block content %}
+    {% block content %}
     <button class="show-all" data-filter="all">Показать все</button>
     <section class="gallery">
         <h2 class="section-title">Наши оформления</h2>
 
         <div class="gallery-grid">
-            <a href="{% url 'goods:girls' %}" class="gallery-item" data-category="girls">
+            <a href="{% url 'goods:catalog' %}?category=girls" class="gallery-item" data-category="girls">
                 <img src="{% static 'main/images/gallery/balloon-01.jpg' %}" alt="Девочкам">
                 <span class="overlay-text">Для девочек</span>
             </a>
 
-            <a href="{% url 'goods:boys' %}" class="gallery-item" data-category="boys">
+            <a href="{% url 'goods:catalog' %}?category=boys" class="gallery-item" data-category="boys">
                 <img src="{% static 'main/images/gallery/balloon-02.jpg' %}" alt="Мальчикам">
                 <span class="overlay-text">Для мальчиков</span>
             </a>
 
-            <a href="{% url 'goods:adults' %}" class="gallery-item" data-category="adults">
+            <a href="{% url 'goods:catalog' %}?category=adults" class="gallery-item" data-category="adults">
                 <img src="{% static 'main/images/gallery/balloon-03.jpg' %}" alt="Для взрослых">
                 <span class="overlay-text">Для взрослых</span>
             </a>
 
-            <a href="{% url 'goods:extract' %}" class="gallery-item" data-category="extract">
+            <a href="{% url 'goods:catalog' %}?category=extract" class="gallery-item" data-category="extract">
                 <img src="{% static 'main/images/gallery/balloon-03.jpg' %}" alt="Выписка">
                 <span class="overlay-text">Выписка</span>
             </a>
 
-            <a href="{% url 'goods:balloons' %}" class="gallery-item" data-category="balloons">
+            <a href="{% url 'goods:catalog' %}?category=balloons" class="gallery-item" data-category="balloons">
                 <img src="{% static 'main/images/gallery/balloon-01.jpg' %}" alt="Просто шары">
                 <span class="overlay-text">Просто шары</span>
             </a>
 
-            <a href="{% url 'goods:photobooth' %}" class="gallery-item" data-category="photobooth">
+            <a href="{% url 'goods:catalog' %}?category=photobooth" class="gallery-item" data-category="photobooth">
                 <img src="{% static 'main/images/gallery/balloon-04.jpg' %}" alt="Фотозоны">
                 <span class="overlay-text">Фотозоны</span>
             </a>
 
-            <a href="{% url 'goods:other' %}" class="gallery-item" data-category="other">
+            <a href="{% url 'goods:catalog' %}?category=other" class="gallery-item" data-category="other">
                 <img src="{% static 'main/images/gallery/balloon-04.jpg' %}" alt="Прочее">
                 <span class="overlay-text">Прочее</span>
             </a>
         </div>
     </section>
 {% endblock content %}
+
 
     <!-- Модальное окно для отзывов -->
     <div id="review-modal" class="modal">
