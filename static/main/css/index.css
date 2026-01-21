@@ -1,96 +1,11 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-html,
-body {
-    height: 100vh;
-    background-color: #e4c9b6;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    flex: 1
-}
-
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 80px;
-    padding: 0 40px;
-    
-}
+/* =========================
+   INDEX.CSS (только главная)
+   ========================= */
 
 h1 {
     font-size: 20px;
     text-align: center;
 }
-
-.navbar h2 {
-    color: #dea69b;
-    font-weight: 600;
-}
-
-.navbar ul {
-    display: flex;
-}
-
-.navbar ul li {
-    list-style: none;
-    /* убирает точки в ссылке */
-
-}
-
-.navbar ul li a {
-    text-decoration: none;
-    color: rgb(255, 243, 243);
-    font-size: 15px;
-    margin-right: 20px;
-}
-
-.navbar ul li a:hover {
-    background-color: #dea69b;
-}
-
-.search1 {
-    display: flex;
-    justify-content: end;
-}
-
-
-
-.categories {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 80px;
-    padding: 0px;
-}
-
-.categories ul {
-    display: flex;
-}
-
-.categories ul li {
-    list-style: none;
-}
-
-
-.categories ul li a {
-    text-decoration: none;
-    color: aliceblue;
-    font-size: 20px;
-    margin-right: 20px;
-}
-
-
 
 .reviews-wrapper {
     display: flex;
@@ -104,7 +19,6 @@ h1 {
     color: #ffb742;
 }
 
-
 /* ===== ГАЛЕРЕЯ ===== */
 .gallery {
     padding: 0 20px 60px;
@@ -114,12 +28,10 @@ h1 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
-
 }
 
 .gallery-item {
     max-width: 280px;
-    /* не растягивать больше */
     margin: 0 auto;
     position: relative;
     display: block;
@@ -128,7 +40,6 @@ h1 {
     background: #1c1c1c;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-
 }
 
 .overlay-text {
@@ -146,18 +57,13 @@ h1 {
 .gallery-item:hover {
     transform: translateY(-6px);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
-
 }
 
 .gallery-item img {
-    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
 }
-
-
 
 /* ===== ОТЗЫВЫ ===== */
 .reviews {
@@ -198,26 +104,7 @@ h1 {
     color: #eaeaea;
 }
 
-/* ===== АДАПТИВ ===== */
-@media (max-width: 768px) {
-    .section-title {
-        font-size: 22px;
-    }
-
-    .review-card img {
-        max-height: 200px;
-    }
-}
-
-
-.reviews li a {
-    list-style: none;
-    text-decoration: none;
-
-}
-
-
-
+/* ===== МОДАЛ ===== */
 .modal {
     display: none;
     position: fixed;
@@ -227,19 +114,15 @@ h1 {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.85);
-
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-
-
 .modal-img {
     max-width: 90%;
     max-height: 90vh;
     object-fit: contain;
-    /* сохраняет пропорции */
     border-radius: 8px;
 }
 
@@ -252,7 +135,6 @@ h1 {
     color: #fff;
     cursor: pointer;
     z-index: 1100;
-    /* выше картинки */
 }
 
 /* Адаптив для экранов меньше 480px */
@@ -268,92 +150,13 @@ h1 {
     }
 }
 
+/* Адаптив */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 22px;
+    }
 
-footer {
-    display: flex;
-    justify-content: space-between;
-    /* ключевой момент */
-    align-items: center;
-    /* выравнивание по вертикали */
-    background: #1c1c1c;
-    padding: 30px 50px;
-    border-top: 3px saddlebrown solid;
-    color: #eaeaea;
-    flex-wrap: wrap;
-    /* чтобы не ломалось на маленьких экранах */
-}
-
-.start {
-    display: flex;
-    flex-direction: column;
-    /* чтобы контакты шли сверху вниз */
-    gap: 5px;
-    /* расстояние между строками */
-}
-
-.start a {
-    color: #eaeaea;
-    text-decoration: none;
-}
-
-.start1 {
-    display: flex;
-    gap: 15px;
-    /* расстояние между иконками */
-}
-
-.start1 a img {
-    width: 40px;
-    height: 40px;
-    transition: transform 0.3s;
-}
-
-.start1 a img:hover {
-    transform: scale(1.1);
-    /* лёгкий эффект при наведении */
-}
-
-
-/* Блок с кнопками фильтрации */
-.filters {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin: 30px 0;
-  flex-wrap: wrap;
-}
-
-/* Общий стиль кнопок */
-.filters button,
-.show-all {
-  padding: 10px 18px;
-  border-radius: 20px;
-  border: 1px solid #dea69b;
-  background-color: #fff;
-  color: #333;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-/* Наведение */
-.filters button:hover,
-.show-all:hover {
-  background-color: #dea69b;
-  color: #fff;
-}
-
-/* Активная кнопка */
-.filters button.active,
-.show-all.active {
-  background-color: #dea69b;
-  color: #fff;
-  border-color: #dea69b;
-}
-
-/* Кнопка "Показать все" отдельно (если стоит одна) */
-.show-all {
-  display: block;
-  margin: 20px auto;
+    .review-card img {
+        max-height: 200px;
+    }
 }

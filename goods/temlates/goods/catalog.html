@@ -1,2 +1,40 @@
 {% extends "main/base.html" %}
 {% load static %}
+
+{% block title %}
+{% if category %}{{ category.name }}{% else %}Каталог{% endif %} | ШароФея
+{% endblock %}
+
+{% block content %}
+
+<section class="products">
+
+    {% for product in goods %}
+<article class="product-card product-card--girls">
+            <img src="static/images/girls/girls-03.jpg" alt="Принцесса" class="product-image">
+            <div class="product-info">
+                <h3 class="product-title">Оформление для девочек</h3>
+                <p class="product-price">4 900 ₽</p>
+                <div class="product-composition">
+                    <h4>В состав набора входит:</h4>
+                    <ul>
+                        <li>Фольгированная фигура</li>
+                        <li>Латексные шары — 10 шт</li>
+                        <li>Шары-хром — 4 шт</li>
+                    </ul>
+                </div>
+                <button class="product-btn">Написать</button>
+            </div>
+        </article>
+            </div>
+
+            <button class="product-btn">Написать</button>
+        </div>
+    </article>
+    {% empty %}
+        <p>Товары отсутствуют</p>
+    {% endfor %}
+
+</section>
+
+{% endblock content %}

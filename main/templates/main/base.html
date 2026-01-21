@@ -1,55 +1,72 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Подключаем общий CSS через static -->
+    <!-- Base CSS -->
     <link rel="stylesheet" href="{% static 'main/css/base.css' %}">
 
-    <!-- Google Fonts для navbar -->
+    <!-- Google Font (navbar) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&display=swap" rel="stylesheet">
 
-    <!-- Блок для CSS и шрифтов конкретной страницы -->
     {% block css %}{% endblock css %}
 
-    <title>ШароФея</title>
+    <title>{% block title %}ШароФея{% endblock %}</title>
 </head>
 
 <body>
-    <main>
+<main>
 
-        <!-- Navbar -->
-        <div class="navbar">
-            <h2>ШароФея</h2>
-            <ul>
-                <li><a href="{% url 'main:index' %}" data-filter="all">Главная</a></li>
-                <li><a href="{% url 'goods:catalog' %}" data-filter="catalog">Каталог</a></li>
-                <li><a href="{% url 'main:contacts' %}" data-filter="contacts">Контакты</a></li>
-                <li><a href="{% url 'main:reviews' %}" data-filter="reviews">Отзывы</a></li>
-                <li><a href="{% url 'main:cart' %}" data-filter="cart">Корзина</a></li>
+    <!-- Navbar -->
+    <div class="navbar">
+        <h2>ШароФея</h2>
+        <ul>
+            <li><a href="{% url 'main:index' %}">Главная</a></li>
+            <li><a href="{% url 'goods:catalog' %}">Каталог</a></li>
+            <li><a href="{% url 'main:contacts' %}">Контакты</a></li>
+            <li><a href="{% url 'main:reviews' %}">Отзывы</a></li>
+            <li><a href="{% url 'main:cart' %}">Корзина</a></li>
+        </ul>
+    </div>
 
-            </ul>
-        </div>
+    {% block content %}{% endblock content %}
 
-        {% block content %}{% endblock %}
+    <!-- Modal -->
+    <div id="review-modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-img" id="review-modal-img">
+        <p class="modal-text" id="review-modal-text"></p>
+    </div>
 
-        <!-- Модальное окно для отзывов -->
-        <div id="review-modal" class="modal">
-            <span class="close">&times;</span>
-            <img class="modal-img" id="review-modal-img">
-            <p class="modal-text" id="review-modal-text"></p>
-        </div>
-    </main>
+</main>
 
-    <!-- Footer -->
-    {% block footer %}{% endblock %}
+{% block footer %}
+<footer>
+    <div class="start">
+        <address>
+            <p><a href="mailto:i@innasher.ru">i@innasher.ru</a></p>
+            <p>Телефон: <a href="tel:+79255181722">+7-925-518-17-22</a></p>
+        </address>
 
-    <!-- JS -->
-    <script src="{% static 'main/js/index.js' %}"></script>
+        <address class="start1">
+            <a href="https://t.me/feia_mi" target="_blank">
+                <img src="https://img.icons8.com/ios/50/telegram.png">
+            </a>
+            <a href="https://www.instagram.com/feia_mi" target="_blank">
+                <img src="https://img.icons8.com/ios/50/instagram-new--v1.png">
+            </a>
+            <a href="https://vk.ru/feia_mi" target="_blank">
+                <img src="https://img.icons8.com/ios/50/vk-com.png">
+            </a>
+        </address>
+    </div>
+</footer>
+{% endblock footer %}
+
+<script src="{% static 'main/js/index.js' %}"></script>
 </body>
 </html>
