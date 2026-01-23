@@ -1,7 +1,29 @@
-{% extends 'base.html' %}
+{% extends "main/base.html" %}
 {% load static %}
 
+{% block title %}Отзывы{% endblock %}
+
+{# Подключаем CSS именно для этой страницы #}
 {% block css %}
-<!-- Подключаем CSS конкретно для отзывов -->
-<link rel="stylesheet" href="{% static 'main/css/rewies.css' %}">
+<link rel="stylesheet" href="{% static 'main/css/reviews.css' %}">
 {% endblock css %}
+
+{% block content %}
+<section class="reviews">
+    <h2 class="section-title">Отзывы клиентов</h2>
+
+    <div class="reviews-grid">
+        {% for review in reviews %}
+            <article class="review-card">
+                <img src="{{ review.image.url }}" alt="Отзыв клиента">
+            </article>
+        {% empty %}
+            <p class="empty">Отзывов пока нет</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock content %}
+
+{% block js %}
+<script src="{% static 'main/js/index.js' %}"></script>
+{% endblock js %}
