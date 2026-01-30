@@ -1,11 +1,4 @@
 /* ===== ОБЩИЕ СТИЛИ ===== */
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
 html,
 body {
   min-height: 100vh;
@@ -19,42 +12,6 @@ body {
 
 main {
   flex: 1;
-}
-
-/* ===== НАВБАР ===== */
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 80px;
-  padding: 0 40px;
-}
-
-.navbar h2 {
-  color: #dea69b;
-  font-weight: 600;
-}
-
-.navbar ul {
-  display: flex;
-}
-
-.navbar ul li {
-  list-style: none;
-}
-
-.navbar ul li a {
-  text-decoration: none;
-  color: rgb(255, 243, 243);
-  font-size: 15px;
-  margin-right: 20px;
-  padding: 6px 10px;
-  border-radius: 6px;
-  transition: background-color 0.3s;
-}
-
-.navbar ul li a:hover {
-  background-color: #dea69b;
 }
 
 /* ===== КОНТЕЙНЕР ТОВАРОВ ===== */

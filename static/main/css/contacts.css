@@ -1,46 +1,7 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 html,
 body {
   min-height: 100vh;
   background-color: #e4c9b6;
-}
-
-/* NAVBAR */
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 80px;
-  padding: 0 40px;
-}
-
-.navbar h2 {
-  color: #dea69b;
-  font-weight: 600;
-}
-
-.navbar ul {
-  display: flex;
-}
-
-.navbar ul li {
-  list-style: none;
-}
-
-.navbar ul li a {
-  text-decoration: none;
-  color: rgb(255, 245, 245);
-  font-size: 15px;
-  margin-right: 20px;
-}
-
-.navbar ul li a:hover {
-  background-color: #dea69b;
 }
 
 /* MAIN SECTION */
