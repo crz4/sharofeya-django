@@ -1,0 +1,28 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Каталог{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'goods/css/catalog.css' %}">
+{% endblock css %}
+
+{% block content %}
+<section class="catalog">
+    <h2 class="section-title">Каталог товаров</h2>
+
+    <div class="products-grid">
+
+        {% for product in products %}
+            <div class="product-card">
+                <img src="{{ product.image.url }}" alt="{{ product.title }}">
+                <h3>{{ product.title }}</h3>
+                <p>{{ product.price }} ₽</p>
+            </div>
+        {% empty %}
+            <p>Товаров пока нет</p>
+        {% endfor %}
+
+    </div>
+</section>
+{% endblock content %}
