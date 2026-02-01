@@ -36,6 +36,10 @@ main {
 .navbar ul {
     display: flex;
 }
+.navbar ul {
+    display: flex;
+    flex-wrap: wrap; /* перенос ссылок если не помещаются */
+}
 
 .navbar ul li {
     list-style: none;
@@ -152,4 +156,21 @@ footer {
 .show-all {
   display: block;
   margin: 20px auto;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        padding: 0;
+    }
+}
+
+/* Адаптивность картинок */
+img {
+    max-width: 100%;
 }
