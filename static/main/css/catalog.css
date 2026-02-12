@@ -1,0 +1,121 @@
+/* ======================= */
+/* ОСНОВНОЙ БЛОК КАТАЛОГА */
+/* ======================= */
+
+.catalog {
+    padding: 40px 20px;
+}
+
+.catalog .section-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #dea69b;
+}
+
+/* ======================= */
+/* СЕТКА ТОВАРОВ */
+/* ======================= */
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+/* ======================= */
+/* КАРТОЧКА ТОВАРА */
+/* ======================= */
+
+.product-card {
+    border: 2px solid #dea69b;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* ======================= */
+/* ИЗОБРАЖЕНИЕ */
+/* ======================= */
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* ======================= */
+/* ЗАГОЛОВОК И ЦЕНА */
+/* ======================= */
+
+.product-card h3 {
+    margin: 12px 0 6px;
+    font-size: 18px;
+    text-align: center;
+    color: #333;
+}
+
+.product-card .price {
+    font-size: 16px;
+    font-weight: 600;
+    color: #dea69b;
+    margin-bottom: 12px;
+}
+
+/* ======================= */
+/* КНОПКА */
+/* ======================= */
+
+.product-card .btn {
+    text-decoration: none;
+    background-color: #dea69b;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.product-card .btn:hover {
+    background-color: #ff8d76;
+}
+
+/* ======================= */
+/* АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ */
+/* ======================= */
+
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .product-card img {
+        height: 160px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-card img {
+        height: 140px;
+    }
+
+    .product-card h3 {
+        font-size: 16px;
+    }
+
+    .product-card .price {
+        font-size: 14px;
+    }
+}

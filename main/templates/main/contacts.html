@@ -2,60 +2,61 @@
 {% load static %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'main/css/contacts.css' %}">
+<link rel="stylesheet" href="{% static 'main/css/contacts.css' %}">
 {% endblock css %}
 
-    <title>ШароФея</title>
-</head>
-
-<body>
-    <main>
-
-        <!-- Navbar -->
-        <div class="navbar">
-            <h2>ШароФея</h2>
-            <ul>
-                <li><a href="{% url 'index' %}" data-filter="all">Главная</a></li>
-                <li><a href="{% url 'catalog' %}" data-filter="catalog">Каталог</a></li>
-                <li><a href="{% url 'contacts' %}" data-filter="contacts">Контакты</a></li>
-                <li><a href="{% url 'reviews' %}" data-filter="reviews">Отзывы</a></li>
-                <li><a href="{% url 'cart' %}" data-filter="cart">Корзина</a></li>
-            </ul>
-        </div>
+{% block title %}Контакты — ШароФея{% endblock title %}
 
 {% block content %}
-        
-    <div class="main-section">
-        <div class="wrapper">
-            <div class="contact-card">
-                <h2>Наши контакты</h2>
-                <p>Телефон: <a href="tel:+79001234567" class="telefon">+7-925-518-1722</a></p>
-                <a href="mailto:i@innasher.ru?subject=Здравствуйте" class="email-link">i@innasher.ru</a>
-                <p>Адрес: г. Москва, ул. Пушкина, д. 10</p>
-                <button type="submit">Отправить</button>
-            </div>
-        </div>
+<div class="main-section">
 
-        <section class="contact-form">
-            <h2>Свяжитесь с нами</h2>
-            <form action="#" method="post">
-                <label for="name">Ваше имя:</label>
-                <input type="text" id="name" name="name" placeholder="Введите имя" required>
+    <!-- ===== КОНТАКТЫ ===== -->
+    <div class="wrapper">
+        <h2>Наши контакты</h2>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Введите email" required>
+        <p>
+            Телефон:
+            <a href="tel:+79255181722" class="telefon">+7-925-518-17-22</a>
+        </p>
+        <p>
+            Эл.Почта:
+        <a href="mailto:i@innasher.ru" class="email-link">i@innasher.ru</a>
+        </p>
+        <p>
+            Самовывоз: МО, дер. Дальние Прудищи, ул. Ленина, дом 67, строение 1
+        </p>
 
-                <label for="message">Сообщение:</label>
-                <textarea id="message" name="message" rows="5" placeholder="Ваше сообщение..." required></textarea>
-
-                <button type="submit1">Отправить</button>
-            </form>
-        </section>
+        <!-- КНОПКА TELEGRAM -->
+        <a href="https://t.me/Inna17Sher" target="_blank" class="telegram-btn">
+            Написать нам
+        </a>
     </div>
+
+    <!-- ===== ФОРМА ===== -->
+    <section class="contact-form">
+        <h2>Свяжитесь с нами</h2>
+
+        <form id="tg-form">
+
+            <label for="name">Ваше имя:</label>
+            <input type="text" id="name" name="name" placeholder="Введите имя" required>
+
+            <label for="phone">Телефон (необязательно):</label>
+            <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Введите email" required>
+
+            <label for="message">Сообщение:</label>
+            <textarea id="message" name="message" rows="5" placeholder="Ваше сообщение..." required></textarea>
+
+            <button type="submit">Отправить</button>
+        </form>
+    </section>
+
+</div>
 {% endblock content %}
 
-
-    <!-- JS -->
-    <script src="{% static 'main/js/index.js' %}"></script>
-</body>
-</html>
+{% block js %}
+<script src="{% static 'main/js/contacts.js' %}"></script>
+{% endblock js %}

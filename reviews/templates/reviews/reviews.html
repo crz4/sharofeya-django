@@ -1,10 +1,13 @@
 {% extends "main/base.html" %}
 {% load static %}
 
-{# Подключаем CSS именно для этой страницы #}
 {% block css %}
 <link rel="stylesheet" href="{% static 'main/css/reviews.css' %}">
+
+
 {% endblock css %}
+
+{% block title %}Отзывы клиентов — ШароФея{% endblock title %}
 
 {% block content %}
 <section class="reviews">

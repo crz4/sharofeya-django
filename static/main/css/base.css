@@ -6,8 +6,8 @@
 
 html,
 body {
-    height: 100vh;
-    background-color: #e4c9b6;
+    min-height: 100vh;
+    background-color: #faebd7;
 }
 
 body {
@@ -47,13 +47,17 @@ main {
 
 .navbar ul li a {
     text-decoration: none;
-    color: rgb(255, 243, 243);
-    font-size: 15px;
+    color: #000000;        /* обычный цвет текста */
+    font-size: 17px;
     margin-right: 20px;
+    padding: 8px 5px;
+    border-radius: 5px;
+    transition: all 0.25s ease;  /* плавное изменение */
 }
 
 .navbar ul li a:hover {
-    background-color: #dea69b;
+    background-color: #dea69b;  /* фон при наведении */
+    color: #fff;                /* цвет текста при наведении */
 }
 
 /* ===== CATEGORIES (если общий блок) ===== */
@@ -87,7 +91,7 @@ footer {
     align-items: center;
     background: #1c1c1c;
     padding: 30px 50px;
-    border-top: 3px saddlebrown solid;
+    border-top: 3px #dea69b solid;
     color: #eaeaea;
     flex-wrap: wrap;
 }

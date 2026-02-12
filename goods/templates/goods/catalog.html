@@ -1,7 +1,7 @@
 {% extends "main/base.html" %}
 {% load static %}
 
-{% block title %}Каталог{% endblock %}
+{% block title %}Каталог — ШароФея{% endblock title %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'goods/css/catalog.css' %}">
@@ -12,17 +12,22 @@
     <h2 class="section-title">Каталог товаров</h2>
 
     <div class="products-grid">
-
         {% for product in products %}
-            <div class="product-card">
-                <img src="{{ product.image.url }}" alt="{{ product.title }}">
-                <h3>{{ product.title }}</h3>
-                <p>{{ product.price }} ₽</p>
-            </div>
+        <div class="product-card">
+            <a href="{% url 'goods:product' %}?slug={{ product.slug }}">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.title }}">
+                {% else %}
+                    <img src="{% static 'main/images/no-image.png' %}" alt="Нет изображения">
+                {% endif %}
+            </a>
+            <h3>{{ product.title }}</h3>
+            <p class="price">{{ product.price }} ₽</p>
+            <a href="{% url 'goods:product' %}?slug={{ product.slug }}" class="btn">Подробнее</a>
+        </div>
         {% empty %}
             <p>Товаров пока нет</p>
         {% endfor %}
-
     </div>
 </section>
 {% endblock content %}
