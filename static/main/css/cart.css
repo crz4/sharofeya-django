@@ -1,0 +1,39 @@
+.cart-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.cart-table th, .cart-table td {
+    border: 1px solid #dea69b;
+    padding: 12px;
+    text-align: center;
+}
+
+.cart-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.checkout-btn {
+    background-color: #dea69b;
+    color: #fff;
+    padding: 12px 25px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background-color: #ff8d76;
+}

@@ -1,0 +1,57 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Корзина — ШароФея{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'main/css/cart.css' %}">
+{% endblock css %}
+
+{% block content %}
+<section class="cart-section">
+    <h2 class="section-title">Корзина</h2>
+
+    {% if cart_items %}
+    <form method="POST">
+        {% csrf_token %}
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Фото</th>
+                    <th>Название</th>
+                    <th>Цена</th>
+                    <th>Кол-во</th>
+                    <th>Сумма</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td>
+                        {% if item.product.image %}
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}" class="cart-img">
+                        {% else %}
+                            <img src="{% static 'main/images/no-image.png' %}" alt="Нет изображения" class="cart-img">
+                        {% endif %}
+                    </td>
+                    <td>{{ item.product.title }}</td>
+                    <td>{{ item.product.price }} ₽</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.subtotal }} ₽</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" style="text-align:right; font-weight:700;">Итого:</td>
+                    <td>{{ total }} ₽</td>
+                </tr>
+            </tfoot>
+        </table>
+        <button type="submit" class="btn checkout-btn">Отправить заказ в Telegram</button>
+    </form>
+    {% else %}
+        <p>В корзине пока нет товаров.</p>
+    {% endif %}
+</section>
+{% endblock content %}

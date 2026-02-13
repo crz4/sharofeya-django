@@ -1,31 +1,81 @@
 {% extends "main/base.html" %}
 {% load static %}
 
-{% block title %}{{ product.title }} — ШароФея{% endblock title %}
+{% block title %}{{ product.title }} — ШароФея{% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'goods/css/product.css' %}">
-{% endblock css %}
+<link rel="stylesheet" href="{% static 'main/css/product.css' %}">
+{% endblock %}
 
 {% block content %}
-<section class="product-page">
-    <div class="product-container">
-        <div class="product-image">
-            {% if product.image %}
-                <img src="{{ product.image.url }}" alt="{{ product.title }}">
-            {% else %}
-                <img src="{% static 'main/images/no-image.png' %}" alt="Нет изображения">
-            {% endif %}
-        </div>
+<section class="product-detail">
+    <div class="container">
+        <div class="product-wrapper">
+            <!-- Изображение -->
+            <div class="product-image">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.title }}">
+                {% else %}
+                    <img src="{% static 'main/images/no-image.png' %}" alt="Нет изображения">
+                {% endif %}
+            </div>
 
-        <div class="product-info">
-            <h2>{{ product.title }}</h2>
-            <p class="price">{{ product.price }} ₽</p>
-            <p class="description">{{ product.description|default:"Описание отсутствует" }}</p>
+            <!-- Информация о товаре -->
+            <div class="product-info">
+                <h1>{{ product.title }}</h1>
+                <p class="price">{{ product.price }} ₽</p>
+                <p class="description">{{ product.description|linebreaks }}</p>
 
-            <!-- Пока корзины нет, кнопка ведет на catalog -->
-            <a href="{% url 'goods:catalog' %}" class="btn">Вернуться в каталог</a>
+                <!-- Кнопки -->
+                <div class="product-buttons">
+                    <!-- Добавить в корзину -->
+                    <button class="btn add-to-cart" 
+                            data-id="{{ product.id }}" 
+                            data-url="{% url 'goods:add_to_cart' %}">
+                        В корзину
+                    </button>
+
+                    <!-- Назад к каталогу -->
+                    <a href="{% url 'goods:catalog' %}" class="btn back-btn">Назад</a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+<!-- Всплывающее окно -->
+<div id="cart-popup" class="cart-popup" style="display: none;">
+    Товар добавлен в корзину!
+</div>
 {% endblock content %}
+
+{% block js %}
+<script src="{% static 'main/js/cart.js' %}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const addBtn = document.querySelector('.add-to-cart');
+    const popup = document.getElementById('cart-popup');
+
+    addBtn.addEventListener('click', function() {
+        const productId = this.dataset.id;
+        const url = this.dataset.url;
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `product_id=${productId}`
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                popup.style.display = 'block';
+                setTimeout(() => { popup.style.display = 'none'; }, 2000);
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

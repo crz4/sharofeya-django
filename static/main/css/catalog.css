@@ -1,6 +1,50 @@
 /* ======================= */
 /* ОСНОВНОЙ БЛОК КАТАЛОГА */
 /* ======================= */
+.catalog-filters {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.catalog-filters form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.catalog-filters input,
+.catalog-filters select {
+    padding: 10px 14px;
+    border: 2px solid #dea69b;
+    border-radius: 8px;
+    outline: none;
+    width: 180px;              /* одинаковая ширина */
+    height: 42px;              /* одинаковая высота */
+    box-sizing: border-box;    /* чтобы размеры считались правильно */
+    transition: all 0.3s ease;
+    background-color: #fff;
+}
+
+.catalog-filters input:focus,
+.catalog-filters select:focus {
+    border-color: #ff8d76;
+}
+
+.filter-btn {
+    background-color: #dea69b;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: #ff8d76;
+}
 
 .catalog {
     padding: 40px 20px;
@@ -9,8 +53,48 @@
 .catalog .section-title {
     text-align: center;
     font-size: 32px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     color: #dea69b;
+}
+
+.subcategory-title {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+/* ======================= */
+/* ПОДКАТЕГОРИИ */
+/* ======================= */
+
+.subcategory-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.subcategory-card {
+    padding: 8px 14px;
+    background-color: #dea69b;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.subcategory-card:hover {
+    background-color: #ff8d76;
+}
+
+.subcategory-card.all {
+    background-color: #333;
+}
+
+.subcategory-card.all:hover {
+    background-color: #555;
 }
 
 /* ======================= */
@@ -75,25 +159,33 @@
 }
 
 /* ======================= */
-/* КНОПКА */
+/* КНОПКИ В КАРТОЧКЕ */
 /* ======================= */
 
-.product-card .btn {
-    text-decoration: none;
-    background-color: #dea69b;
-    color: #fff;
-    padding: 10px 15px;
+.product-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 8px; /* Отступ между кнопками */
+    margin-top: 10px;
+}
+
+.product-buttons .btn {
+    padding: 8px 14px; /* Сделали меньше */
     border-radius: 6px;
     font-weight: 600;
-    transition: background-color 0.3s ease;
+    text-decoration: none;
+    color: #fff;
+    background-color: #dea69b; /* Один цвет для всех кнопок */
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.product-card .btn:hover {
+.product-buttons .btn:hover {
     background-color: #ff8d76;
+    transform: translateY(-2px);
 }
 
 /* ======================= */
-/* АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ */
+/* АДАПТИВНОСТЬ */
 /* ======================= */
 
 @media (max-width: 768px) {

@@ -5,6 +5,16 @@ class Category(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name='Название')
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name='URL')
 
+    # 👇 ДОБАВЛЕНО ТОЛЬКО ЭТО ПОЛЕ
+    parent = models.ForeignKey(
+        'self',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        related_name='subcategories',
+        verbose_name='Родительская категория'
+    )
+
     def __str__(self):
         return self.name
 
@@ -17,7 +27,7 @@ class Category(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=200, unique=True, verbose_name='Название товара')
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name='URL')
-    price = models.DecimalField(verbose_name='Цена',default=0.00, max_digits=7, decimal_places=2 )
+    price = models.DecimalField(verbose_name='Цена', default=0.00, max_digits=7, decimal_places=2)
     image = models.ImageField(upload_to='products/', verbose_name='Фото', blank=True, null=True)
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
     is_active = models.BooleanField(default=True, verbose_name='Активен')

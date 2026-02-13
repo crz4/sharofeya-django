@@ -4,13 +4,27 @@
 {% block title %}Каталог — ШароФея{% endblock title %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'goods/css/catalog.css' %}">
+<link rel="stylesheet" href="{% static 'main/css/catalog.css' %}">
 {% endblock css %}
 
 {% block content %}
 <section class="catalog">
-    <h2 class="section-title">Каталог товаров</h2>
+    <h2 class="section-title">{% if category %}{{ category.name }}{% endif %}</h2>
 
+    <!-- Подкатегории -->
+    {% if category and category.subcategories.all %}
+        <h3 class="subcategory-title">Подкатегории</h3>
+        <div class="subcategory-grid">
+            {% for sub in category.subcategories.all %}
+                <a href="{% url 'goods:catalog' %}?category={{ sub.slug }}" class="subcategory-card">
+                    {{ sub.name }}
+                </a>
+            {% endfor %}
+            <a href="{% url 'goods:catalog' %}?category={{ category.slug }}" class="subcategory-card all">Все</a>
+        </div>
+    {% endif %}
+
+    <!-- Сетка товаров -->
     <div class="products-grid">
         {% for product in products %}
         <div class="product-card">
@@ -23,11 +37,48 @@
             </a>
             <h3>{{ product.title }}</h3>
             <p class="price">{{ product.price }} ₽</p>
-            <a href="{% url 'goods:product' %}?slug={{ product.slug }}" class="btn">Подробнее</a>
+
+            <!-- Горизонтальные кнопки -->
+            <div class="product-buttons">
+                <a href="{% url 'goods:product' %}?slug={{ product.slug }}" class="btn">Подробнее</a>
+                <button class="btn add-to-cart" 
+                        data-id="{{ product.id }}" 
+                        data-url="{% url 'goods:add_to_cart' %}">
+                    В корзину
+                </button>
+            </div>
         </div>
         {% empty %}
             <p>Товаров пока нет</p>
         {% endfor %}
     </div>
 </section>
+
+<!-- Всплывающее окно -->
+<div id="cart-popup" class="cart-popup" style="display:none;">
+    Товар добавлен в корзину!
+</div>
 {% endblock content %}
+
+{% block js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('.add-to-cart').click(function(e){
+        e.preventDefault();
+        let btn = $(this);
+        let productId = btn.data('id');
+        let url = btn.data('url');
+
+        $.post(url, { 
+            'product_id': productId, 
+            'csrfmiddlewaretoken': '{{ csrf_token }}' 
+        }, function(response){
+            if(response.success){
+                $('#cart-popup').fadeIn(200).delay(1200).fadeOut(200);
+            }
+        });
+    });
+});
+</script>
+{% endblock js %}

@@ -33,6 +33,8 @@ h1 {
 
 .gallery-item {
     width: 100%;
+    height: 250px;
+    object-fit: cover;           
     position: relative;
     display: block;
     border-radius: 14px;
