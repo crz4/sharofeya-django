@@ -1,51 +1,6 @@
 /* ======================= */
-/* ОСНОВНОЙ БЛОК КАТАЛОГА */
+/* КАТАЛОГ */
 /* ======================= */
-.catalog-filters {
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-.catalog-filters form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-}
-
-.catalog-filters input,
-.catalog-filters select {
-    padding: 10px 14px;
-    border: 2px solid #dea69b;
-    border-radius: 8px;
-    outline: none;
-    width: 180px;              /* одинаковая ширина */
-    height: 42px;              /* одинаковая высота */
-    box-sizing: border-box;    /* чтобы размеры считались правильно */
-    transition: all 0.3s ease;
-    background-color: #fff;
-}
-
-.catalog-filters input:focus,
-.catalog-filters select:focus {
-    border-color: #ff8d76;
-}
-
-.filter-btn {
-    background-color: #dea69b;
-    color: #fff;
-    padding: 8px 15px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-}
-
-.filter-btn:hover {
-    background-color: #ff8d76;
-}
-
 .catalog {
     padding: 40px 20px;
 }
@@ -56,16 +11,41 @@
     margin-bottom: 20px;
     color: #dea69b;
 }
+.back-btn-small {
+    font-size: 12px;      /* примерно в 3 раза меньше стандартной кнопки */
+    padding: 4px 8px;
+    background-color: #dea69b;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn-small:hover {
+    background-color: #ff8d76;
+}
+
+/* Размещение кнопки в верхнем правом углу на ПК */
+.back-to-home {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 480px) {
+    .back-to-home {
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+}
 
 .subcategory-title {
     text-align: center;
     font-size: 22px;
     margin-bottom: 15px;
 }
-
-/* ======================= */
-/* ПОДКАТЕГОРИИ */
-/* ======================= */
 
 .subcategory-grid {
     display: flex;
@@ -98,18 +78,74 @@
 }
 
 /* ======================= */
+/* ФИЛЬТРЫ И СОРТИРОВКА */
+/* ======================= */
+.catalog-filters {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.catalog-filters form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+
+.catalog-filters label {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    font-weight: 900;
+    color: #333;
+    margin: 0;
+    padding: 0 8px;
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+.catalog-filters input,
+.catalog-filters select {
+    height: 42px;
+    padding: 10px 14px;
+    border: 2px solid #dea69b;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+.catalog-filters input:focus,
+.catalog-filters select:focus {
+    border-color: #ff8d76;
+}
+
+.filter-btn {
+    background-color: #dea69b;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: #ff8d76;
+}
+
+/* ======================= */
 /* СЕТКА ТОВАРОВ */
 /* ======================= */
-
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
 }
-
-/* ======================= */
-/* КАРТОЧКА ТОВАРА */
-/* ======================= */
 
 .product-card {
     border: 2px solid #dea69b;
@@ -129,20 +165,12 @@
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
-/* ======================= */
-/* ИЗОБРАЖЕНИЕ */
-/* ======================= */
-
 .product-card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
     border-radius: 8px;
 }
-
-/* ======================= */
-/* ЗАГОЛОВОК И ЦЕНА */
-/* ======================= */
 
 .product-card h3 {
     margin: 12px 0 6px;
@@ -158,24 +186,20 @@
     margin-bottom: 12px;
 }
 
-/* ======================= */
-/* КНОПКИ В КАРТОЧКЕ */
-/* ======================= */
-
 .product-buttons {
     display: flex;
     justify-content: center;
-    gap: 8px; /* Отступ между кнопками */
+    gap: 8px;
     margin-top: 10px;
 }
 
 .product-buttons .btn {
-    padding: 8px 14px; /* Сделали меньше */
+    padding: 8px 14px;
     border-radius: 6px;
     font-weight: 600;
     text-decoration: none;
     color: #fff;
-    background-color: #dea69b; /* Один цвет для всех кнопок */
+    background-color: #dea69b;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -185,8 +209,30 @@
 }
 
 /* ======================= */
-/* АДАПТИВНОСТЬ */
+/* КНОПКА "НАЗАД" */
 /* ======================= */
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background-color: #fff;
+    border: 2px solid #dea69b;
+    color: #333;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
+.back-btn:hover {
+    background-color: #ffefeb;
+    transform: translateY(-1px);
+}
 
 @media (max-width: 768px) {
     .products-grid {
@@ -195,6 +241,19 @@
 
     .product-card img {
         height: 160px;
+    }
+
+    .catalog-filters form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .catalog-filters label,
+    .catalog-filters input,
+    .catalog-filters select,
+    .filter-btn,
+    .back-btn {
+        width: 100%;
     }
 }
 
@@ -209,5 +268,10 @@
 
     .product-card .price {
         font-size: 14px;
+    }
+
+    .back-btn {
+        padding: 12px;
+        font-size: 16px;
     }
 }

@@ -1,15 +1,56 @@
+/* ======================= */
+/* ОСНОВНОЙ БЛОК КОРЗИНЫ */
+/* ======================= */
 .cart-section {
     padding: 40px 20px;
     text-align: center;
 }
 
+/* ======================= */
+/* ПОЛЯ ФОРМЫ */
+/* ======================= */
+.cart-form .customer-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.cart-form .customer-info label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.cart-form .customer-info input {
+    width: 220px;           /* одинаковая ширина */
+    height: 42px;           /* одинаковая высота */
+    padding: 10px 14px;
+    border: 2px solid #dea69b;
+    border-radius: 8px;
+    outline: none;
+    background-color: #fff;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.cart-form .customer-info input:focus {
+    border-color: #ff8d76;
+}
+
+/* ======================= */
+/* ТАБЛИЦА КОРЗИНЫ */
+/* ======================= */
 .cart-table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
 }
 
-.cart-table th, .cart-table td {
+.cart-table th,
+.cart-table td {
     border: 1px solid #dea69b;
     padding: 12px;
     text-align: center;
@@ -22,6 +63,9 @@
     border-radius: 8px;
 }
 
+/* ======================= */
+/* КНОПКА ОФОРМЛЕНИЯ */
+/* ======================= */
 .checkout-btn {
     background-color: #dea69b;
     color: #fff;
@@ -36,4 +80,28 @@
 
 .checkout-btn:hover {
     background-color: #ff8d76;
+}
+
+/* ======================= */
+/* АДАПТИВНОСТЬ */
+/* ======================= */
+@media (max-width: 768px) {
+    .cart-form .customer-info {
+        flex-direction: column;
+        align-items: center;
+    }
+    .cart-form .customer-info input {
+        width: 100%;
+    }
+    .cart-table img {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-table img {
+        width: 50px;
+        height: 50px;
+    }
 }

@@ -9,8 +9,32 @@
 
 {% block content %}
 <section class="catalog">
+
+
+    <!-- Заголовок категории -->
     <h2 class="section-title">{% if category %}{{ category.name }}{% endif %}</h2>
 
+    <!-- ФИЛЬТРЫ И СОРТИРОВКА -->
+    <section class="catalog-filters">
+        <form method="GET" class="sort-form">
+            <label for="sort">Сортировать:</label>
+            <select name="sort" id="sort">
+                <option value="">По умолчанию</option>
+                <option value="new" {% if request.GET.sort == "new" %}selected{% endif %}>Новинки</option>
+                <option value="price_asc" {% if request.GET.sort == "price_asc" %}selected{% endif %}>Цена ▲</option>
+                <option value="price_desc" {% if request.GET.sort == "price_desc" %}selected{% endif %}>Цена ▼</option>
+            </select>
+
+            <input type="number" name="min_price" placeholder="Цена от" value="{{ request.GET.min_price }}">
+            <input type="number" name="max_price" placeholder="Цена до" value="{{ request.GET.max_price }}">
+            <input type="text" name="q" placeholder="Поиск товара" value="{{ request.GET.q }}">
+            <button type="submit" class="filter-btn">Применить</button>
+        </form>
+    </section>
+    <!-- Кнопка "На главную" -->
+    <div class="back-to-home">
+        <a href="/" class="btn back-btn-small">Обратно к категориям</a>
+    </div>
     <!-- Подкатегории -->
     {% if category and category.subcategories.all %}
         <h3 class="subcategory-title">Подкатегории</h3>
@@ -38,7 +62,6 @@
             <h3>{{ product.title }}</h3>
             <p class="price">{{ product.price }} ₽</p>
 
-            <!-- Горизонтальные кнопки -->
             <div class="product-buttons">
                 <a href="{% url 'goods:product' %}?slug={{ product.slug }}" class="btn">Подробнее</a>
                 <button class="btn add-to-cart" 
@@ -64,18 +87,43 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function(){
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith(name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+
     $('.add-to-cart').click(function(e){
         e.preventDefault();
         let btn = $(this);
         let productId = btn.data('id');
         let url = btn.data('url');
 
-        $.post(url, { 
-            'product_id': productId, 
-            'csrfmiddlewaretoken': '{{ csrf_token }}' 
-        }, function(response){
-            if(response.success){
-                $('#cart-popup').fadeIn(200).delay(1200).fadeOut(200);
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: { 'product_id': productId },
+            headers: { 'X-CSRFToken': csrftoken },
+            success: function(response){
+                if(response.success){
+                    $('#cart-popup').fadeIn(200).delay(1200).fadeOut(200);
+                } else {
+                    alert('Ошибка добавления товара!');
+                }
+            },
+            error: function(){
+                alert('Ошибка сервера при добавлении товара!');
             }
         });
     });

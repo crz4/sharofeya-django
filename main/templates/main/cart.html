@@ -12,8 +12,20 @@
     <h2 class="section-title">Корзина</h2>
 
     {% if cart_items %}
-    <form method="POST">
+    <form method="POST" class="cart-form">
         {% csrf_token %}
+
+        <div class="customer-info">
+            <label for="name">Имя:</label>
+            <input type="text" name="name" id="name" placeholder="Ваше имя" required>
+
+            <label for="phone">Телефон:</label>
+            <input type="text" name="phone" id="phone" placeholder="+7XXXXXXXXXX" required>
+
+            <label for="email">Email (по желанию):</label>
+            <input type="email" name="email" id="email" placeholder="example@mail.com">
+        </div>
+
         <table class="cart-table">
             <thead>
                 <tr>
@@ -48,10 +60,25 @@
                 </tr>
             </tfoot>
         </table>
+
         <button type="submit" class="btn checkout-btn">Отправить заказ в Telegram</button>
     </form>
     {% else %}
         <p>В корзине пока нет товаров.</p>
     {% endif %}
 </section>
+
+<!-- JS для автодобавления +7 -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const phoneInput = document.getElementById('phone');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', () => {
+            let val = phoneInput.value.replace(/\D/g, '');
+            if (!val.startsWith('7')) val = '7' + val;
+            phoneInput.value = '+' + val;
+        });
+    }
+});
+</script>
 {% endblock content %}

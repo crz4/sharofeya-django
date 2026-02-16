@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // =============================
+    // Добавление товаров в корзину
+    // =============================
     const buttons = document.querySelectorAll('.add-to-cart');
     const notif = document.getElementById('cart-notification');
 
@@ -15,18 +18,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: `product_id=${productId}`
             })
-            .then(response => response.json())
+            .then(response => {
+                // проверяем, что сервер вернул JSON
+                if (!response.ok) throw new Error('Сервер вернул ошибку!');
+                return response.json();
+            })
             .then(data => {
-                if (data.success) {
+                if (data.success && notif) {
                     notif.style.display = 'block';
                     setTimeout(() => { notif.style.display = 'none'; }, 2000);
-                } else {
-                    alert('Ошибка добавления товара!');
                 }
+            })
+            .catch(error => {
+                console.error('Ошибка AJAX:', error);
+                // alert('Ошибка добавления товара!'); // убираем alert, чтобы не мешало UX
             });
         });
     });
 
+    // =============================
+    // Авто-добавление +7 к номеру
+    // =============================
+    const phoneInput = document.getElementById('phone');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', () => {
+            let val = phoneInput.value.replace(/\D/g, '');
+            if (!val.startsWith('7')) val = '7' + val;
+            phoneInput.value = '+' + val;
+        });
+    }
+
+    // =============================
+    // Функция получения CSRF-токена
+    // =============================
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {

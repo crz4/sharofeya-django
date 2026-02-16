@@ -5,7 +5,7 @@
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'main/css/product.css' %}">
-{% endblock %}
+{% endblock css %}
 
 {% block content %}
 <section class="product-detail">
@@ -23,20 +23,20 @@
             <!-- Информация о товаре -->
             <div class="product-info">
                 <h1>{{ product.title }}</h1>
+
+                <!-- Кнопка "Назад" -->
+                <button class="back-btn" onclick="goBack()">← Вернуться к каталогу</button>
+
                 <p class="price">{{ product.price }} ₽</p>
                 <p class="description">{{ product.description|linebreaks }}</p>
 
                 <!-- Кнопки -->
                 <div class="product-buttons">
-                    <!-- Добавить в корзину -->
                     <button class="btn add-to-cart" 
                             data-id="{{ product.id }}" 
                             data-url="{% url 'goods:add_to_cart' %}">
                         В корзину
                     </button>
-
-                    <!-- Назад к каталогу -->
-                    <a href="{% url 'goods:catalog' %}" class="btn back-btn">Назад</a>
                 </div>
             </div>
         </div>
@@ -52,6 +52,14 @@
 {% block js %}
 <script src="{% static 'main/js/cart.js' %}"></script>
 <script>
+function goBack() {
+    if (document.referrer) {
+        window.history.back();
+    } else {
+        window.location.href = "{% url 'goods:catalog' %}";
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const addBtn = document.querySelector('.add-to-cart');
     const popup = document.getElementById('cart-popup');

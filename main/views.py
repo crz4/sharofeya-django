@@ -1,14 +1,20 @@
+# main/views.py
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from goods.models import Product, Category
-import requests
+from main.utils.telegram import send_telegram_message, send_telegram_photo
 
+# -----------------------------
 # Главная страница
+# -----------------------------
 def index(request):
     categories = Category.objects.all()
     return render(request, 'main/index.html', {'categories': categories})
 
+
+# -----------------------------
 # Каталог товаров
+# -----------------------------
 def catalog(request):
     category_slug = request.GET.get('category')
     products = Product.objects.filter(is_active=True)
@@ -28,21 +34,33 @@ def catalog(request):
         'category': category_obj
     })
 
+
+# -----------------------------
 # Карточка товара
+# -----------------------------
 def product(request):
     slug = request.GET.get('slug')
     product_item = get_object_or_404(Product, slug=slug)
     return render(request, 'goods/product.html', {'product': product_item})
 
+
+# -----------------------------
 # Контакты
+# -----------------------------
 def contacts(request):
     return render(request, 'main/contacts.html')
 
+
+# -----------------------------
 # Отзывы
+# -----------------------------
 def reviews(request):
     return render(request, 'main/reviews.html')
 
+
+# -----------------------------
 # Добавление товара в корзину (AJAX)
+# -----------------------------
 def add_to_cart(request):
     if request.method == "POST":
         product_id = request.POST.get('product_id')
@@ -61,13 +79,16 @@ def add_to_cart(request):
 
     return JsonResponse({'success': False})
 
-# Корзина
+
+# -----------------------------
+# Корзина с отправкой заказа и фото
+# -----------------------------
 def cart(request):
     cart = request.session.get('cart', {})
     cart_items = []
     total = 0
 
-    # Формируем список товаров для отображения
+    # Формируем список товаров и подсчитываем сумму
     for product_id, quantity in cart.items():
         product = get_object_or_404(Product, id=product_id)
         subtotal = product.price * quantity
@@ -79,19 +100,42 @@ def cart(request):
         })
 
     if request.method == 'POST' and cart_items:
-        # Создаем текст для отправки в Telegram
-        message = "📦 Новый заказ:\n"
+        # Получаем данные покупателя
+        name = request.POST.get('name', 'Не указано')
+        phone = request.POST.get('phone', 'Не указано')
+
+        # Нормализуем номер телефона
+        digits = ''.join(filter(str.isdigit, phone))
+        if not digits.startswith('7'):
+            digits = '7' + digits
+        phone = '+' + digits
+
+        # Создаём текстовое сообщение
+        text_message = f"<b>📦 Новый заказ</b>\n\n"
+        text_message += f"<b>Имя:</b> {name}\n"
+        text_message += f"<b>Телефон:</b> {phone}\n\n"
+        text_message += "<b>Товары:</b>\n"
+
         for item in cart_items:
-            message += f"{item['product'].title} — {item['quantity']} шт — {item['subtotal']} ₽\n"
-        message += f"\n💰 Итого: {total} ₽"
+            text_message += f"{item['product'].title} — {item['quantity']} шт — {item['subtotal']} ₽\n"
 
-        # --- Отправка в Telegram ---
-        TOKEN = "твой_telegram_bot_token"      # токен бота
-        CHAT_ID = "id_заказчицы"               # id заказчицы
-        url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
-        requests.get(url, params={"chat_id": CHAT_ID, "text": message})
+        text_message += f"\n<b>💰 Итого:</b> {total} ₽"
 
-        request.session['cart'] = {}  # Очистка корзины после отправки
+        # Отправляем текст всем чатам
+        send_telegram_message(text_message)
+
+        # Отправляем фото каждого товара всем чатам
+        for item in cart_items:
+            if item['product'].image:
+                img_url = request.build_absolute_uri(item['product'].image.url)
+                caption = f"{item['product'].title} — {item['quantity']} шт — {item['subtotal']} ₽"
+                send_telegram_photo(img_url, caption)
+
+        # Очистка корзины
+        request.session['cart'] = {}
+        request.session.modified = True
+
+        # Перенаправляем на главную
         return redirect('main:index')
 
     return render(request, 'main/cart.html', {

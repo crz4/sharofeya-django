@@ -20,7 +20,7 @@
         </p>
         <p>
             Эл.Почта:
-        <a href="mailto:i@innasher.ru" class="email-link">i@innasher.ru</a>
+            <a href="mailto:i@innasher.ru" class="email-link">i@innasher.ru</a>
         </p>
         <p>
             Самовывоз: МО, дер. Дальние Прудищи, ул. Ленина, дом 67, строение 1
@@ -59,4 +59,19 @@
 
 {% block js %}
 <script src="{% static 'main/js/contacts.js' %}"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const phoneInput = document.getElementById('phone');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', () => {
+            let val = phoneInput.value.replace(/\D/g, ''); // оставляем только цифры
+            if (!val.startsWith('7')) {
+                val = '7' + val;
+            }
+            phoneInput.value = '+' + val;
+        });
+    }
+});
+</script>
 {% endblock js %}
