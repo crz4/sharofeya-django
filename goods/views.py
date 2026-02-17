@@ -14,41 +14,37 @@ def catalog(request):
 
     categories = Category.objects.filter(parent__isnull=True)
     category_obj = None
-    products = None
+    products = Product.objects.filter(is_active=True)  # Все активные товары по умолчанию
     subcategories = None
 
     if category_slug:
         category_obj = get_object_or_404(Category, slug=category_slug)
         subcategories = category_obj.subcategories.all()
 
-        if not subcategories.exists():
-            products = Product.objects.filter(
-                category=category_obj,
-                is_active=True
-            )
-    else:
-        products = Product.objects.filter(is_active=True)
+        # Берем товары текущей категории + прямые подкатегории
+        category_ids = [category_obj.id] + list(subcategories.values_list('id', flat=True))
+        products = products.filter(category_id__in=category_ids)
 
-    if products is not None:
+    # Поиск по названию и описанию
+    if search_query:
+        products = products.filter(
+            Q(title__icontains=search_query) |
+            Q(description__icontains=search_query)
+        )
 
-        if search_query:
-            products = products.filter(
-                Q(title__icontains=search_query) |
-                Q(description__icontains=search_query)
-            )
+    # Фильтр по цене
+    if min_price:
+        products = products.filter(price__gte=min_price)
+    if max_price:
+        products = products.filter(price__lte=max_price)
 
-        if min_price:
-            products = products.filter(price__gte=min_price)
-
-        if max_price:
-            products = products.filter(price__lte=max_price)
-
-        if sort == "new":
-            products = products.order_by('-id')
-        elif sort == "price_asc":
-            products = products.order_by('price')
-        elif sort == "price_desc":
-            products = products.order_by('-price')
+    # Сортировка
+    if sort == "new":
+        products = products.order_by('-id')
+    elif sort == "price_asc":
+        products = products.order_by('price')
+    elif sort == "price_desc":
+        products = products.order_by('-price')
 
     context = {
         'categories': categories,
@@ -86,7 +82,6 @@ def search_products(request):
     return JsonResponse({"results": results})
 
 
-# ✅ ВОТ ЭТО VIEW ДОБАВЛЕНИЯ В КОРЗИНУ
 @require_POST
 def add_to_cart(request):
     product_id = request.POST.get('product_id')

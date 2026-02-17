@@ -25,7 +25,10 @@
                 <h1>{{ product.title }}</h1>
 
                 <!-- Кнопка "Назад" -->
-                <button class="back-btn" onclick="goBack()">← Вернуться к каталогу</button>
+                <a href="{% url 'goods:catalog' %}" class="back-btn">
+                    ← Вернуться к каталогу
+                </a>
+
 
                 <p class="price">{{ product.price }} ₽</p>
                 <p class="description">{{ product.description|linebreaks }}</p>
@@ -52,14 +55,6 @@
 {% block js %}
 <script src="{% static 'main/js/cart.js' %}"></script>
 <script>
-function goBack() {
-    if (document.referrer) {
-        window.history.back();
-    } else {
-        window.location.href = "{% url 'goods:catalog' %}";
-    }
-}
-
 document.addEventListener('DOMContentLoaded', function() {
     const addBtn = document.querySelector('.add-to-cart');
     const popup = document.getElementById('cart-popup');

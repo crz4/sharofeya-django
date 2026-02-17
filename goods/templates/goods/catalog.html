@@ -10,13 +10,15 @@
 {% block content %}
 <section class="catalog">
 
-
     <!-- Заголовок категории -->
     <h2 class="section-title">{% if category %}{{ category.name }}{% endif %}</h2>
 
     <!-- ФИЛЬТРЫ И СОРТИРОВКА -->
     <section class="catalog-filters">
         <form method="GET" class="sort-form">
+            {% if category %}
+                <input type="hidden" name="category" value="{{ category.slug }}">
+            {% endif %}
             <label for="sort">Сортировать:</label>
             <select name="sort" id="sort">
                 <option value="">По умолчанию</option>
@@ -31,10 +33,23 @@
             <button type="submit" class="filter-btn">Применить</button>
         </form>
     </section>
+
     <!-- Кнопка "На главную" -->
     <div class="back-to-home">
         <a href="/" class="btn back-btn-small">Обратно к категориям</a>
     </div>
+
+    <div class="back-buttons">
+        {#  кнопка для подкатегорий  #}
+    {% if category and category.parent %}
+    <div class="back-buttons">
+        <a href="{% url 'goods:catalog' %}?category={{ category.parent.slug }}" 
+           class="btn back-btn-small subcategory-back">
+            ← Назад к {{ category.parent.name }}
+        </a>
+    </div>
+{% endif %}
+
     <!-- Подкатегории -->
     {% if category and category.subcategories.all %}
         <h3 class="subcategory-title">Подкатегории</h3>
